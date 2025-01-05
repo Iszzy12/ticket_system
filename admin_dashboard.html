@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Topic</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket[0] }}</td>
+            <td>{{ ticket[1] }}</td>
+            <td>{{ ticket[2] }}</td>
+            <td>{{ ticket[3] }}</td>
+            <td>
+                <a href="{{ url_for('update_ticket_status', ticket_id=ticket[0], status='In Progress') }}">In Progress</a>
+                <a href="{{ url_for('update_ticket_status', ticket_id=ticket[0], status='Done') }}">Done</a>
+                <a href="{{ url_for('update_ticket_status', ticket_id=ticket[0], status='Handling') }}">Handling</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
